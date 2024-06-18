@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\ArticlesTranslate;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Comments;
 
 class Article extends Model
 {
@@ -112,10 +113,20 @@ class Article extends Model
     {
         return Article::join('articles_translates', 'articles.id', '=', 'articles_translates.article_id')
                 ->where('articles_translates.lang', $local)
-                ->select('articles.*', 'articles_translates.title')
+                ->select('articles.*', 'articles_translates.title', 'articles_translates.description')
                 ->orderBy('id', 'desc')
                 ->get();
     }
+    public static function item($local = null, $id = null) 
+    {
+        return Article::join('articles_translates', 'articles.id', '=', 'articles_translates.article_id')
+                ->where('articles.id', $id)
+                ->where('articles_translates.lang', $local)
+                ->select('articles.*', 'articles_translates.title','articles_translates.description','articles_translates.text')
+                ->first();
+    }
+     
+
     public static function itemByIdWithTranslates($id = null) 
     {
         return Article::join('articles_translates', 'articles.id', '=', 'articles_translates.article_id')
@@ -184,5 +195,11 @@ class Article extends Model
         
         return false;  
     }
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    } 
+
+   
 }      
 

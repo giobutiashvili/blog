@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
 
 use DB;
@@ -10,57 +11,65 @@ class CommentsController extends BaseController
     // ჩამონათვალის გვერდი
     public function index()
     {
-        $items = Comment::join('users','comments.user_id','users.id')
-                ->join('articles_translates','comments.article_id','articles_translates.article_id')
-                ->where('articles_translates.lang','ka')
-                ->select('comments.*','users.email','articles_translates.title AS article')
-                ->orderBy('id','DESC')
-                ->get();
-        
-        return view('admin.comments.index', compact('items'));
+            $comments = DB::table('comments')
+            ->join('users','comments.user_id','users.id')
+            ->join('articles_translates','comments.article_id','articles_translates.article_id')
+            ->where('articles_translates.lang','ka')
+            ->select('comments.*','users.email','articles_translates.title AS article')
+            ->orderBy('id','DESC')
+            ->get();
+                return view('admin.comments.index', compact('comments'));
     }
 
     // კომენტარის წაშლა მბ-ში
-    public function destroy(Request $request, $id)
+    public function destroy($id)
     {
-        $delete = Comment::find($id)->delete();
-        $request->session()->flash('result', $delete);
-        
-        return redirect()->back();      
+        $affected = DB::table('comments')->where('id', $id)->delete();
+
+        if (!$affected) {
+            session()->flash('message', 'ჩანაწერი ვერ წაიშალა');
+            session()->flash('success', false);
+        } else {
+            session()->flash('message', 'ჩანაწერი წაიშალა');
+            session()->flash('success', true);
+        }
+
+        return redirect()->back();
     }
     
     // კომენტარის დადასტურება
-    protected function confirm(Request $request)
+    public function confirm(Request $request, $id)
     {
-        if($request->ajax())
-        {
-            $id = $request->id;
-            $item = DB::table('comments')->find($id);
+        $item = DB::table('comments')->find($id);
 
-            if(!$item)
-            {
-                return response()->json([
-                    'success' => false, 
-                    'message' => 'ჩანაწერი ვერ მოიძებნა'
-                ]);
-            }
+        if (!$item) {
+            $request->session()->flash('message', 'ჩანაწერი ვერ მოიძებნა');
+            $request->session()->flash('success', false);
+            return redirect()->back();
+        }
 
-            $affected = DB::table('comments')->where('id', $id)->update(['confirmed' => $item->confirmed ? 0 : 1]);
+        // Debugging: Log the item to check its properties
+        \Log::info('Comment item:', (array)$item);
 
-            if(!$affected)
-            {
-                return response()->json([
-                    'success' => false, 
-                    'message' => 'ჩანაწერი ვერ განახლდა'
-                ]);
-            }
+        // Ensure the 'confirmed' property exists before using it
+        if (property_exists($item, 'confirmed')) {
+            $confirmed = $item->confirmed ? 0 : 1;
+        } else {
+            $confirmed = 0;
+        }
 
-            return response()->json([
-                'success' => true, 
-                'message' => 'ჩანაწერი განახლდა'
-            ]);
-        }   
-           
-    }  
+        $affected = DB::table('comments')->where('id', $id)->update(['confirmed' => $confirmed]);
+
+        if (!$affected) {
+            $request->session()->flash('message', 'ჩანაწერი ვერ განახლდა');
+            $request->session()->flash('success', false);
+            return redirect()->back();
+        }
+
+        $request->session()->flash('message', 'ჩანაწერი განახლდა');
+        $request->session()->flash('success', true);
+        return redirect()->back();
+    }
+    
 }             
-                
+                         

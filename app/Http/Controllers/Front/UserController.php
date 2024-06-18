@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+
 use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\Comment;
@@ -14,7 +15,9 @@ class UserController extends Controller
 {
     public function dashboard()
     {
-        return view('front.dashboard');
+        
+        $users = Auth::user();
+        return view('front.dashboard', compact('users'));
     }
     public function update_data(Request $request)
     {
