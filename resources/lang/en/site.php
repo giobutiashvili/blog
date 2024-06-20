@@ -26,5 +26,11 @@ return [
     'personal_data' => 'Personal Data',
     'info_updated' => 'Info Update',
     'waiting_for_admin_confirm' => 'Waiting For Admin Confirm',
-    'check_out_blogs' => 'Check Out The Blogs'
+    'check_out_blogs' => 'Check Out The Blogs',
+    'send_message' => 'Send Massage',
+    'message' => 'Massage',
+    'subject' => 'Subject',
+    'get_in_touch'=> 'Get In Touch',
+    'contact' => 'Contact',
+    'tank_you' => 'Tank You',
 ];

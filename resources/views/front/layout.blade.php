@@ -12,6 +12,20 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link rel="stylesheet" href="{{asset('assets/front/styles.css')}}">
+        <style>
+            button {
+                border: 2px solid #4CAF50 ; /* Green border */
+                color: #4CAF50; /* Green text */
+                background-color: white; /* White background */
+                padding: 10px 24px; /* Padding */
+                border-radius: 5px; /* Rounded corners */
+                transition: all 0.3s ease; /* Smooth transition */
+            }
+            button:hover {
+                background-color: #4CAF50 !important; /* Green background on hover */ 
+                color: white !important; /* White text on hover */
+            }
+        </style>
       
 </head>
 <body>
@@ -33,7 +47,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link px-lg-3 py-3 py-lg-4" href="contact.html">
+                        <a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ route('contact.index') }}">
                             @lang('menu.contact')
                         </a>
                     </li>

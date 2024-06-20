@@ -40,7 +40,7 @@
                     <label>@lang('site.email')</label>
                     <input type="email" name="email" value="{{ Auth::user()->email }}" class="form-control" required>
                 </div>
-                <button type="submit" class="btn btn-primary mt-3 mb-3" style="width: 100%;">
+                <button type="submit" class="btn btn-info mt-3 mb-3 d-flex justify-content-center" style="width: 30%;">
                     @lang('site.update')
                 </button>
             </form>
@@ -60,7 +60,7 @@
                     <label>@lang('site.re_new_password')</label>
                     <input type="password" name="new_password_confirmation" class="form-control" required>
                 </div>
-                <button type="submit" class="btn btn-primary mt-3 mb-3" style="width: 100%;">
+                <button type="submit" class="btn btn-info mt-2 mb-2  d-flex justify-content-center" style="width: 30%;">
                     @lang('site.update')
                 </button>
             </form>

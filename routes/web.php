@@ -5,10 +5,13 @@ use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\AdminsController;
 use App\Http\Controllers\Admin\ContactsController;
 use App\Http\Controllers\Admin\ArticlesController;
+use App\Http\Controllers\Admin\CommentsController;
 
 use App\Http\Controllers\Front\IndexController;
 use App\Http\Controllers\Front\UserController;
-use App\Http\Controllers\Admin\CommentsController;
+use App\Http\Controllers\Front\ContactController;
+
+
 
 
 
@@ -19,6 +22,12 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'lo
    
     // მთავარი გვერდი
     Route::get('/', [IndexController::class, 'index'])->name('index');
+    
+    // კონტაქტის გვერდი
+    Route::get('/contact', [ContactController::class, 'index']) -> name('contact.index');
+    Route::Post('/contact', [ContactController::class, 'store']) -> name('contact.store');
+
+
 
     //სიახლის შიდა გვერდი
     Route::get('/article/{id}', [IndexController::class, 'article'])->name('article');
@@ -60,7 +69,7 @@ Route::group(['middleware' => ['admin'], 'prefix' => 'admin'], function () {
     // კომენტარების გვერდი
     Route::resource('comments', CommentsController::class, ['only' => ['index','destroy']]);
     Route::get('/admin/comments', [CommentsController::class, 'index'])->name('comments.index');
-Route::post('/admin/comments/confirm/{id}', [CommentsController::class, 'confirm'])->name('comments.confirm');
+    Route::post('/admin/comments/confirm/{id}', [CommentsController::class, 'confirm'])->name('comments.confirm');
 });       
 
 

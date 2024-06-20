@@ -27,4 +27,11 @@ return [
     'info_updated' => 'ინფო განახლდა',
     'waiting_for_admin_confirm' => 'დაელოდეთ ადმინის დადასტურებას',
     'check_out_blogs' => 'გაეცანით ბლოგებს',
+    'send_message' => 'გაგზავნა',
+    'message' => 'ტექსტი',
+    'subject' => 'თემა',
+    'get_in_touch' => 'მოგვწერეთ',
+    'contact' => 'კონტაქტი',
+    'tank_you' => 'გმადლობთ',
+
 ];
