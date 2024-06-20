@@ -25,4 +25,6 @@ return [
     're_password' => 'გამიეორეთ პაროლი',
     'personal_data' => 'პერსონალური ინფორმაცია',
     'info_updated' => 'ინფო განახლდა',
+    'waiting_for_admin_confirm' => 'დაელოდეთ ადმინის დადასტურებას',
+    'check_out_blogs' => 'გაეცანით ბლოგებს',
 ];

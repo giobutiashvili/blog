@@ -15,21 +15,24 @@ class IndexController extends Controller
     public function index()
     {
         $users = Auth::user();
+      
         $articles = Article::all(App::getLocale()); // App::getLocale() მიმდინარე ენა
-
+        
+    
         return view('front.index', compact('articles', 'users'));
     }
     public function article($id)
     {
         $article = Article::item(App::getLocale(), $id); 
         
+        $users = Auth::user();
 
         if(!$article)
         {
             return redirect()->back();
         }
         
-        return view('front.article', compact('article'));
+        return view('front.article', compact('article', 'users'));
     }
     
 }

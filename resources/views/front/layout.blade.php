@@ -41,8 +41,13 @@
                         <li class="nav-item">
                             <a href="{{ route('dashboard') }}" class="nav-link px-lg-3 py-3 py-lg-4">
                                 <div class="small">@lang('site.dashboard')
-                                     <span style="text-decoration: underline;
-                                      font-size:12px">{{$users->name}}</span></div>
+                                     <span style="text-decoration:underline;
+                                      font-size:12px">
+                                        @if($users)
+                                         {{ $users->name }}
+                                        @endif
+                                    </span>
+                                </div>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -91,7 +96,7 @@
             <iv class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
                     <div class="site-heading">
-                        <h1>{{ $articles_page ? $article->title : 'სდგსდგსდგს' }}
+                        <h1>{{ $articles_page ? $article->title : __('site.check_out_blogs') }}
                     </div>
                 </div>
             </div>
@@ -104,7 +109,7 @@
     <!-- /ძირითადი შიგთავსი -->
 
     <!-- საიტის ძირი -->
-    <footer class="border-top">
+    <footer class="border-top" style="background-image: url('{{asset('assets/front/home-bg.jpg') }}')" >
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
@@ -148,56 +153,3 @@
     
 </body>
 </html>
-
-
-<?php
-use App\Http\Middleware\Admin;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\LoginController;
-use App\Http\Controllers\Admin\AdminsController;
-use App\Http\Controllers\Admin\ContactsController;
-use App\Http\Controllers\Admin\ArticlesController;
-
-use App\Http\Controllers\Front\IndexController;
-
-
-
-// ენებთან სამუშად
-// მომხმარებლის მხარე 
-Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function(){  
-   
-    // მთავარი გვერდი
-    Route::get('/', [IndexController::class, 'index'])->name('index');
-
-    //სიახლის შიდა გვერდი
-    Route::get('/article/{id}', [IndexController::class, 'article'])->name('article');
-
-});
-
-// ავტორიზაცია და სისტემიდან გასვლა
-Route::group(['middleware' => ['admin'], 'prefix' => 'admin'], function () {
-    
-    // ავტორიზაცია და სისტემიდან გასვლა
-    Route::get('/login', [LoginController::class, 'showLogin'])->withoutMiddleware([Admin::class])->name('ShowLogin');
-    Route::post('/signin', [LoginController::class, 'login'])->withoutMiddleware([Admin::class])->name('AdminLogin');
-    Route::get('/logout', [LoginController::class, 'logout'])->name('AdminLogout');
-    
-    // ადმინისტრატორის პანელის მთავარი გვერდი 
-    Route::get('/', function () {
-        return view('admin.index');
-    })->name('AdminMainPage');
-    
-    // ადმინისტრატორები
-    Route::resource('admins', AdminsController::class);
-    
-    // საკონტაქტო ინფორმაციის გვერდი
-    Route::resource('contacts', ContactsController::class, ['only' => ['edit','update']]);
-    Route::get('/contacts/cache', [ContactsController::class, 'cache'])->name('contacts.cache');
-    
-    // სიახლეები
-    Route::resource('articles', ArticlesController::class);
-
-});       
-
-
-

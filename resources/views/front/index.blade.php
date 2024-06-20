@@ -6,18 +6,23 @@
         <div class="col-md-10 col-lg-8 col-xl-7">
             @forelse($articles as $article)
                 <div class="post-preview">
-                    <a href="{{ route('article', $article->id) }}">
-                        <h2 class="post-title">{{ $article->title }}</h2>
-                        <h3 class="post-subtitle">{{ $article->description }}</h3>
-                    </a>
+                        <div class="d-flex">
+                            <div style="margin-right: 15px">
+                                <img  style="width: 100px; height:100px" src="{{$article->image}}" alt="{{asset('assets/front/No.png')}}">
+                            </div>
+                            <div>
+                                 <a href="{{ route('article', $article->id) }}">
+                                    <h2 class="card-title">{{ $article->title }}</h2>
+                                    <h4 class="card-subtitle mb-2 text-muted">{{ $article->description }}</h4>
+                                </a>
+                            </div>
+                        </div>
+                    
                     <p class="post-meta">
                         @lang('site.author') 
-                        <a href="{{ route('article', $article->id) }}">
-                            @if($users)
-                                {{ $users->name }}
-                             @endif
-                            
-                        </a>
+                        
+                          
+                       
                         @lang('site.date') : {{ $article->created_at }}
                     </p>
                 </div>

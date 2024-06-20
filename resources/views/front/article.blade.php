@@ -56,7 +56,7 @@
                     <div class="alert alert-primary">
                         
                         <h4>{{ $comment->comment }}</h4>
-                        <span> @lang('site.author') : {{ $comment->user->email }}</span>
+                        <span> @lang('site.author') : {{ $comment->user->name }}</span>
                         <p>@lang('site.date') : {{ $comment->created_at }}</p>
                     </div>
                 @empty

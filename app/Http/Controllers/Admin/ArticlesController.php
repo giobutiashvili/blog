@@ -6,11 +6,13 @@ use App\Models\Article;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+
 class ArticlesController extends BaseController
 {
     public function index()
     {
         $items = Article::all('ka');
+     
     
         return view('admin.articles.index', compact('items')); // მივამაგროთ ინფორმაცია და დავაბრუნოთ წარმოდგენის ფაილი
     }

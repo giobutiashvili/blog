@@ -25,4 +25,6 @@ return [
     're_password' => 'Re Password',
     'personal_data' => 'Personal Data',
     'info_updated' => 'Info Update',
+    'waiting_for_admin_confirm' => 'Waiting For Admin Confirm',
+    'check_out_blogs' => 'Check Out The Blogs'
 ];

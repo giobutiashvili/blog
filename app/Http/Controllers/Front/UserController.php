@@ -79,7 +79,7 @@ class UserController extends Controller
         
         return redirect()->back();
     }
-    public function comment(Request $request)
+    public function comment(Request $request) ///fsafasfasfasfa
     {
         $this->validate($request,[
             'article_id' => 'required|integer',
