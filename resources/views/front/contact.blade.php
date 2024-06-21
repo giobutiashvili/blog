@@ -16,7 +16,7 @@
 									@endif
 									<h3 class="mb-4">@lang('site.get_in_touch')</h3>
 									<div id="form-message-warning" class="mb-4"></div> 
-									<form method="POST" action="{{ route('contact.store') }}" id="contactForm" name="contactForm" class="contactForm">
+									<form method="POST" action="{{ route('contact.index') }}" id="contactForm" name="contactForm" class="contactForm">
 										@csrf
 										<div class="row">
 											<div class="col-md-6">

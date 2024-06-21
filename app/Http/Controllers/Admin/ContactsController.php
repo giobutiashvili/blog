@@ -6,6 +6,8 @@ use Cache;
 use DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Contact;
+
 
 class ContactsController extends Controller
 {
@@ -14,7 +16,9 @@ class ContactsController extends Controller
      */
     public function index()
     {
-       
+        $contacts = Contact::all();
+        $item = DB::table('contacts')->first();
+        return view('admin.admins.contact.edit', compact('item','contacts'));
     }
 
     /**
@@ -48,8 +52,8 @@ class ContactsController extends Controller
     {
     
         $item = DB::table('contacts')->first();
-    
-        return view('admin.admins.contact.edit', compact('item'));
+        $contacts = Contact::all();
+        return view('admin.admins.contact.edit', compact('item','contacts'));
     }
     
 
@@ -96,8 +100,11 @@ class ContactsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $contact = Contact::findOrFail($id);
+        $contact->delete();
+
+        return redirect()->route('contacts.index')->with('success', __('Contact deleted successfully.'));
     }
 }

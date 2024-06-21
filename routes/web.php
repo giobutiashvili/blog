@@ -6,10 +6,14 @@ use App\Http\Controllers\Admin\AdminsController;
 use App\Http\Controllers\Admin\ContactsController;
 use App\Http\Controllers\Admin\ArticlesController;
 use App\Http\Controllers\Admin\CommentsController;
+use App\Http\Controllers\Admin\UsersController;
+
+
 
 use App\Http\Controllers\Front\IndexController;
 use App\Http\Controllers\Front\UserController;
 use App\Http\Controllers\Front\ContactController;
+
 
 
 
@@ -25,10 +29,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'lo
     
     // კონტაქტის გვერდი
     Route::get('/contact', [ContactController::class, 'index']) -> name('contact.index');
-    Route::Post('/contact', [ContactController::class, 'store']) -> name('contact.store');
-
-
-
+    Route::Post('/contact', [ContactController::class, 'store']) -> name('send');
+    
     //სიახლის შიდა გვერდი
     Route::get('/article/{id}', [IndexController::class, 'article'])->name('article');
 
@@ -58,10 +60,15 @@ Route::group(['middleware' => ['admin'], 'prefix' => 'admin'], function () {
     
     // ადმინისტრატორები
     Route::resource('admins', AdminsController::class);
+
+    //მომხმარებლების სიის გვერდი
+    Route::get('users', [UsersController::class, 'index'])->name('admins.users');
     
     // საკონტაქტო ინფორმაციის გვერდი
-    Route::resource('contacts', ContactsController::class, ['only' => ['edit','update']]);
+    Route::resource('contacts', ContactsController::class, ['only' => ['edit','update','destroy','index']]);
     Route::get('/contacts/cache', [ContactsController::class, 'cache'])->name('contacts.cache');
+ 
+
     
     // სიახლეები
     Route::resource('articles', ArticlesController::class);

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin;
 
+
 class AdminsController extends Controller
 {
     /**
@@ -15,6 +16,7 @@ class AdminsController extends Controller
     {
         // ჩამონათვალის გამოსატანი მეთოდი
         $items= Admin::all(); // ყველა ჩანაწერის ამოღება admin ცხრილიდან 
+        
         return view('admin.admins.index', compact('items')); 
         // მივამაგროთ ინფორმაცია და გადავიდეთ items-ის გვერძე
     }

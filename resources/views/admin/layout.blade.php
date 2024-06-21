@@ -10,9 +10,7 @@
         rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
         crossorigin="anonymous">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        
         <style>
             html, body {
                 height: 100%;
@@ -55,7 +53,6 @@
                 </li>
             </ul>
         </nav>
-    
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
@@ -69,6 +66,10 @@
                             <a class="nav-link" href="{{ route('admins.index') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
                                 ადმინისტრატორები
+                            </a>
+                            <a class="nav-link" href="{{ route('admins.users') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+                                მომხმარებლები
                             </a>
                             <a class="nav-link" href="{{ route('contacts.edit', 1) }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-phone"></i></div>

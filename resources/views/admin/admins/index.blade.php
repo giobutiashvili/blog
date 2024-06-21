@@ -16,7 +16,8 @@
             </div>
         @endif
         
-        <div class="col-md-12">
+        <div class="col-md-6">
+            <h2>ადმინისტრატორები</h2>
             <table class="table">
                 <thead>
                     <tr>
@@ -54,6 +55,7 @@
                 </tbody>
             </table>
         </div>
+     
     </div>
 </div>
 @endsection

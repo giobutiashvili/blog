@@ -19,12 +19,11 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col"><button type="button" class="btn btn-success" id="select-all-confirm">გამოქვეყნდეს  ყველა</button></th>
-                             
+                        <th scope="col"><button type="button" class="btn btn-success" id="select-all-confirm">გამოქვეყნდეს  ყველა</button></th> 
                         <th scope="col">ავტორი</th>
                         <th scope="col">კომენტარი</th>
                         <th scope="col">თარიღი</th>
-                        <th scope="col">   <button type="button" class="btn btn-danger" id="select-all-delete">წაიშალოს ყველა</button></th>
+                        <th scope="col"><button type="button" class="btn btn-danger" id="select-all-delete">წაიშალოს ყველა</button></th>
                     </tr>
                 </thead>
                 <tbody>
