@@ -83,6 +83,22 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-comment"></i></div>
                                 კომენტარები
                             </a>
+                            <a class="nav-link" href="{{ route('articles.index') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-newspaper"></i></div>
+                                სიახლეები
+                            </a>
+                            <a class="nav-link" href="{{ route('comments.index') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-comment"></i></div>
+                                კომენტარები
+                            </a>
+                            <a class="nav-link" href="{{ route('articles.index') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-newspaper"></i></div>
+                                სიახლეები
+                            </a>
+                            <a class="nav-link" href="{{ route('comments.index') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-comment"></i></div>
+                                კომენტარები
+                            </a>
                         </div>             
                     </div>        
                     <div class="sb-sidenav-footer">
