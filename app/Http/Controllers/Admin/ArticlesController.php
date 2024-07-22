@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Article;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\ArticlesTranslate;
+
 
 
 class ArticlesController extends BaseController
@@ -12,8 +15,9 @@ class ArticlesController extends BaseController
     public function index()
     {
         $items = Article::all('ka');
-     
-    
+        $users = User::all('name');
+        
+        
         return view('admin.articles.index', compact('items')); // მივამაგროთ ინფორმაცია და დავაბრუნოთ წარმოდგენის ფაილი
     }
 

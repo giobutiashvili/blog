@@ -9,6 +9,11 @@
             <div class="col-md-10 col-lg-8 col-xl-7">
                 {!! $article->text !!}
             </div>
+            <div class="col-md-10 col-lg-8 col-xl-7">
+          
+                    <p>ავტორი: {{ $users->name }} </p>   
+               
+            </div>
             
             <!-- კომენტარების არე --> 
             <div class="col-md-10 col-lg-8 col-xl-7 mt-3">

@@ -19,9 +19,12 @@
                         </div>
                     
                     <p class="post-meta">
-                        @lang('site.author') 
-                        
-                          
+                        @lang('site.author')
+                         @if($users)
+                         {{$users->name}}
+                         @else
+                            ""
+                         @endif 
                        
                         @lang('site.date') : {{ $article->created_at }}
                     </p>
